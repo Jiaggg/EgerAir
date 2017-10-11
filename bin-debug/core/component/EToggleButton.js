@@ -6,6 +6,19 @@
   * 可以有图片，文字，动画
   * todo:九宫格、多动画、图字等
   */
+var __reflect = (this && this.__reflect) || function (p, c, t) {
+    p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
+};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var EToggleButton = (function (_super) {
     __extends(EToggleButton, _super);
     /**
@@ -24,21 +37,21 @@ var EToggleButton = (function (_super) {
         if (fontSize === void 0) { fontSize = 30; }
         if (cartoonType === void 0) { cartoonType = 1; }
         if (assetsName === void 0) { assetsName = "assets"; }
-        _super.call(this);
-        this.assets = RES.getRes("assets"); //名称不一样的话需要修改
-        this.isPlayCartoon = false;
-        this.cartoonType = 1;
-        this.isSelected = false;
-        this.imgNormalName = "";
-        this.imgSelectName = "";
-        this.param = { context: null, data: null }; //回调参数
-        this.param.context = context;
-        this.imgNormalName = imgNormalName;
-        this.imgSelectName = imgSelectName;
-        this.init(backFun, descStr, fontSize, cartoonType, assetsName);
+        var _this = _super.call(this) || this;
+        _this.assets = RES.getRes("assets"); //名称不一样的话需要修改
+        _this.isPlayCartoon = false;
+        _this.cartoonType = 1;
+        _this.isSelected = false;
+        _this.imgNormalName = "";
+        _this.imgSelectName = "";
+        _this.param = { context: null, data: null }; //回调参数
+        _this.param.context = context;
+        _this.imgNormalName = imgNormalName;
+        _this.imgSelectName = imgSelectName;
+        _this.init(backFun, descStr, fontSize, cartoonType, assetsName);
+        return _this;
     }
-    var d = __define,c=EToggleButton,p=c.prototype;
-    p.init = function (backFun, descStr, fontSize, cartoonType, assetsName) {
+    EToggleButton.prototype.init = function (backFun, descStr, fontSize, cartoonType, assetsName) {
         if (backFun === void 0) { backFun = null; }
         if (descStr === void 0) { descStr = ""; }
         if (fontSize === void 0) { fontSize = 30; }
@@ -69,7 +82,7 @@ var EToggleButton = (function (_super) {
         this.touchEnabled = true;
         this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onbuttonTouchTap, this);
     };
-    p.onbuttonTouchTap = function (e) {
+    EToggleButton.prototype.onbuttonTouchTap = function (e) {
         if (this.isPlayCartoon) {
             return;
         }
@@ -102,27 +115,27 @@ var EToggleButton = (function (_super) {
             }
         }, this, 200);
     };
-    p.getBitmap = function () {
+    EToggleButton.prototype.getBitmap = function () {
         return this.btnImg;
     };
     //设置绑定数据
-    p.setBindData = function (data) {
+    EToggleButton.prototype.setBindData = function (data) {
         this.param.data = data;
     };
     //获取绑定数据
-    p.getBindData = function () {
+    EToggleButton.prototype.getBindData = function () {
         return this.param.data;
     };
     //获取是否选择
-    p.getSelected = function () {
+    EToggleButton.prototype.getSelected = function () {
         return this.isSelected;
     };
     //设置按钮是否可用
-    p.setEnable = function (bool) {
+    EToggleButton.prototype.setEnable = function (bool) {
         this.touchEnabled = bool;
     };
     //设置是否选择
-    p.setSelected = function (bool) {
+    EToggleButton.prototype.setSelected = function (bool) {
         this.isSelected = bool;
         if (bool) {
             this.btnImg.texture = this.assets.getTexture(this.imgSelectName);
@@ -133,5 +146,5 @@ var EToggleButton = (function (_super) {
     };
     return EToggleButton;
 }(egret.DisplayObjectContainer));
-egret.registerClass(EToggleButton,'EToggleButton');
+__reflect(EToggleButton.prototype, "EToggleButton");
 //# sourceMappingURL=EToggleButton.js.map

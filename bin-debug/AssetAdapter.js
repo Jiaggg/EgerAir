@@ -1,3 +1,6 @@
+var __reflect = (this && this.__reflect) || function (p, c, t) {
+    p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
+};
 /**
  * Copyright (c) 2014,Egret-Labs.org
  * All rights reserved.
@@ -27,8 +30,7 @@
 var AssetAdapter = (function () {
     function AssetAdapter() {
     }
-    var d = __define,c=AssetAdapter,p=c.prototype;
-    p.getAsset = function (source, callBack, thisObject) {
+    AssetAdapter.prototype.getAsset = function (source, callBack, thisObject) {
         function onGetRes(data) {
             callBack.call(thisObject, data, source);
         }
@@ -49,5 +51,5 @@ var AssetAdapter = (function () {
     };
     return AssetAdapter;
 }());
-egret.registerClass(AssetAdapter,'AssetAdapter',["eui.IAssetAdapter"]);
+__reflect(AssetAdapter.prototype, "AssetAdapter", ["eui.IAssetAdapter"]);
 //# sourceMappingURL=AssetAdapter.js.map

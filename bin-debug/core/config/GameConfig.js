@@ -151,5 +151,25 @@ var GameConfig;
         }
     }
     GameConfig.isVertical = isVertical;
+    /**----------------------------------FAQ:-----------------------------*/
+    // 横屏解决方法 by 张宇
+    // http://bbs.egret-labs.org/thread-529-1-1.html
+    //声音解决方法 by east
+    // http://bbs.egret-labs.org/forum.php?mod=viewthread&tid=386&pid=1770&page=1&extra=#pid1770
+    //js调用ts的方法
+    // document_class 查看egretProperties
+    // 在egret_loader中有如下代码：
+    // var rootClass;
+    // if(document_class){
+    //     rootClass = egret.getDefinitionByName(document_class);
+    // }
+    // var rootContainer = new rootClass();
+    // rootContainer就是主ts中的this
+    // 在index中直接调用rootContainer就ok了
+    //ts调用js的方法
+    // 使用如下方法：
+    // window["_smq"]
+    //上传图片
+    // http://a3147972.blog.51cto.com/2366547/1551066
 })(GameConfig || (GameConfig = {}));
 //# sourceMappingURL=GameConfig.js.map

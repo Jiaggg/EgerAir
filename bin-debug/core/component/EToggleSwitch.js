@@ -5,6 +5,19 @@
   * All Rights Reserved.
   * 可以有图片，文字，动画
   */
+var __reflect = (this && this.__reflect) || function (p, c, t) {
+    p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
+};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var EToggleSwitch = (function (_super) {
     __extends(EToggleSwitch, _super);
     /**
@@ -20,22 +33,22 @@ var EToggleSwitch = (function (_super) {
         if (switchBarName === void 0) { switchBarName = ""; }
         if (backFun === void 0) { backFun = null; }
         if (assetsName === void 0) { assetsName = "assets"; }
-        _super.call(this);
-        this.assets = RES.getRes("assets"); //名称不一样的话需要修改
-        this.isPlayCartoon = false;
-        this.isSelected = false;
-        this.switchOffName = "";
-        this.switchOnName = "";
-        this.switchBarName = "";
-        this.param = { context: null, data: null }; //回调参数
-        this.param.context = context;
-        this.switchOffName = switchOffName;
-        this.switchOnName = switchOnName;
-        this.switchBarName = switchBarName;
-        this.init(backFun, assetsName);
+        var _this = _super.call(this) || this;
+        _this.assets = RES.getRes("assets"); //名称不一样的话需要修改
+        _this.isPlayCartoon = false;
+        _this.isSelected = false;
+        _this.switchOffName = "";
+        _this.switchOnName = "";
+        _this.switchBarName = "";
+        _this.param = { context: null, data: null }; //回调参数
+        _this.param.context = context;
+        _this.switchOffName = switchOffName;
+        _this.switchOnName = switchOnName;
+        _this.switchBarName = switchBarName;
+        _this.init(backFun, assetsName);
+        return _this;
     }
-    var d = __define,c=EToggleSwitch,p=c.prototype;
-    p.init = function (backFun, assetsName) {
+    EToggleSwitch.prototype.init = function (backFun, assetsName) {
         if (backFun === void 0) { backFun = null; }
         if (assetsName === void 0) { assetsName = "assets"; }
         this.backFun = backFun;
@@ -57,7 +70,7 @@ var EToggleSwitch = (function (_super) {
         this.touchEnabled = true;
         this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onbuttonTouchTap, this);
     };
-    p.onbuttonTouchTap = function (e) {
+    EToggleSwitch.prototype.onbuttonTouchTap = function (e) {
         if (this.isPlayCartoon) {
             return;
         }
@@ -81,18 +94,18 @@ var EToggleSwitch = (function (_super) {
         }
     };
     //设置绑定数据
-    p.setBindData = function (data) {
+    EToggleSwitch.prototype.setBindData = function (data) {
         this.param.data = data;
     };
     //获取绑定数据
-    p.getBindData = function () {
+    EToggleSwitch.prototype.getBindData = function () {
         return this.param.data;
     };
     //是否打开
-    p.getSelected = function () {
+    EToggleSwitch.prototype.getSelected = function () {
         return this.isSelected;
     };
     return EToggleSwitch;
 }(egret.DisplayObjectContainer));
-egret.registerClass(EToggleSwitch,'EToggleSwitch');
+__reflect(EToggleSwitch.prototype, "EToggleSwitch");
 //# sourceMappingURL=EToggleSwitch.js.map

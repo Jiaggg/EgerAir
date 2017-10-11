@@ -6,6 +6,19 @@
   * 可以有图片，文字，动画
   * todo:九宫格、多动画、图字等
   */
+var __reflect = (this && this.__reflect) || function (p, c, t) {
+    p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
+};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var EButton = (function (_super) {
     __extends(EButton, _super);
     /**
@@ -22,16 +35,16 @@ var EButton = (function (_super) {
         if (fontSize === void 0) { fontSize = 30; }
         if (cartoonType === void 0) { cartoonType = 1; }
         if (assetsName === void 0) { assetsName = "assets"; }
-        _super.call(this);
-        this.assets = RES.getRes("assets"); //名称不一样的话需要修改
-        this.isPlayCartoon = false;
-        this.cartoonType = 1;
-        this.param = { context: null, data: null }; //回调参数
-        this.param.context = context;
-        this.init(imgName, backFun, descStr, fontSize, cartoonType, assetsName);
+        var _this = _super.call(this) || this;
+        _this.assets = RES.getRes("assets"); //名称不一样的话需要修改
+        _this.isPlayCartoon = false;
+        _this.cartoonType = 1;
+        _this.param = { context: null, data: null }; //回调参数
+        _this.param.context = context;
+        _this.init(imgName, backFun, descStr, fontSize, cartoonType, assetsName);
+        return _this;
     }
-    var d = __define,c=EButton,p=c.prototype;
-    p.init = function (imgName, backFun, descStr, fontSize, cartoonType, assetsName) {
+    EButton.prototype.init = function (imgName, backFun, descStr, fontSize, cartoonType, assetsName) {
         if (backFun === void 0) { backFun = null; }
         if (descStr === void 0) { descStr = ""; }
         if (fontSize === void 0) { fontSize = 30; }
@@ -60,7 +73,7 @@ var EButton = (function (_super) {
         this.touchEnabled = true;
         this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onbuttonTouchTap, this);
     };
-    p.onbuttonTouchTap = function (e) {
+    EButton.prototype.onbuttonTouchTap = function (e) {
         if (this.isPlayCartoon) {
             return;
         }
@@ -87,17 +100,17 @@ var EButton = (function (_super) {
         }, this, 300);
     };
     //设置绑定数据
-    p.setBindData = function (data) {
+    EButton.prototype.setBindData = function (data) {
         this.param.data = data;
     };
     //获取绑定数据
-    p.getBindData = function () {
+    EButton.prototype.getBindData = function () {
         return this.param.data;
     };
-    p.getBitmap = function () {
+    EButton.prototype.getBitmap = function () {
         return this.btnImg;
     };
     return EButton;
 }(egret.DisplayObjectContainer));
-egret.registerClass(EButton,'EButton');
+__reflect(EButton.prototype, "EButton");
 //# sourceMappingURL=EButton.js.map

@@ -4,28 +4,41 @@
   * (c) copyright 2014 - 2035
   * All Rights Reserved.
   */
+var __reflect = (this && this.__reflect) || function (p, c, t) {
+    p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
+};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var ShareIconRender = (function (_super) {
     __extends(ShareIconRender, _super);
     function ShareIconRender() {
-        _super.call(this);
-        this.titleTF = new egret.TextField();
-        this.weixinTF = new egret.TextField();
-        this.qqzoneTF = new egret.TextField();
-        this.sinaweiboTF = new egret.TextField();
-        this.qqTF = new egret.TextField();
-        this.renrenTF = new egret.TextField();
-        this.qqweiboTF = new egret.TextField();
-        this.doubanTF = new egret.TextField();
-        this.assets = RES.getRes("socialIcon"); //名称不一样的话需要修改
-        this.bg = new egret.Sprite();
-        this.w = 0;
-        this.h = 0;
-        this.w = GameConfig.curWidth();
-        this.h = GameConfig.curHeight();
-        this.init();
+        var _this = _super.call(this) || this;
+        _this.titleTF = new egret.TextField();
+        _this.weixinTF = new egret.TextField();
+        _this.qqzoneTF = new egret.TextField();
+        _this.sinaweiboTF = new egret.TextField();
+        _this.qqTF = new egret.TextField();
+        _this.renrenTF = new egret.TextField();
+        _this.qqweiboTF = new egret.TextField();
+        _this.doubanTF = new egret.TextField();
+        _this.assets = RES.getRes("socialIcon"); //名称不一样的话需要修改
+        _this.bg = new egret.Sprite();
+        _this.w = 0;
+        _this.h = 0;
+        _this.w = GameConfig.curWidth();
+        _this.h = GameConfig.curHeight();
+        _this.init();
+        return _this;
     }
-    var d = __define,c=ShareIconRender,p=c.prototype;
-    p.init = function () {
+    ShareIconRender.prototype.init = function () {
         this.bg.graphics.beginFill(0xFFFFFF, 0.9);
         this.bg.graphics.drawRect(0, 0, this.w, 300);
         this.bg.graphics.endFill();
@@ -131,28 +144,28 @@ var ShareIconRender = (function (_super) {
         this.doubanTF.textAlign = egret.HorizontalAlign.CENTER;
         this.addChild(this.doubanTF);
     };
-    p.onWeixinBtnTouchTap = function () {
+    ShareIconRender.prototype.onWeixinBtnTouchTap = function () {
         Global.dispatchEvent(MainNotify.updateShareNotify, "micromessenger");
     };
-    p.onQQzoneBtnTouchTap = function () {
+    ShareIconRender.prototype.onQQzoneBtnTouchTap = function () {
         Global.dispatchEvent(MainNotify.updateShareNotify, "qzone");
     };
-    p.onSinaweiboBtnTouchTap = function () {
+    ShareIconRender.prototype.onSinaweiboBtnTouchTap = function () {
         Global.dispatchEvent(MainNotify.updateShareNotify, "weibo");
     };
-    p.onQQBtnTouchTap = function () {
+    ShareIconRender.prototype.onQQBtnTouchTap = function () {
         Global.dispatchEvent(MainNotify.updateShareNotify, "qq");
     };
-    p.onRenrenBtnTouchTap = function () {
+    ShareIconRender.prototype.onRenrenBtnTouchTap = function () {
         Global.dispatchEvent(MainNotify.updateShareNotify, "renren");
     };
-    p.onQQweiboBtnTouchTap = function () {
+    ShareIconRender.prototype.onQQweiboBtnTouchTap = function () {
         Global.dispatchEvent(MainNotify.updateShareNotify, "txmicroblog");
     };
-    p.onDoubanBtnTouchTap = function () {
+    ShareIconRender.prototype.onDoubanBtnTouchTap = function () {
         Global.dispatchEvent(MainNotify.updateShareNotify, "douban");
     };
     return ShareIconRender;
 }(egret.DisplayObjectContainer));
-egret.registerClass(ShareIconRender,'ShareIconRender');
+__reflect(ShareIconRender.prototype, "ShareIconRender");
 //# sourceMappingURL=ShareIconRender.js.map

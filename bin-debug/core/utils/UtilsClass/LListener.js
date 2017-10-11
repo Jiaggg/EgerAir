@@ -4,6 +4,9 @@
  * @class LListener
  * @constructor
  */
+var __reflect = (this && this.__reflect) || function (p, c, t) {
+    p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
+};
 // 使用方法
 //  sp.touchEnabled=true;//开启触点事件
 // //单击
@@ -34,42 +37,42 @@ var lcp;
             this.CLASS_NAME = "LListener";
             this.isInit = false;
             if (this.isInit) {
+                //                egret.Logger.warning("不可以实例化"+this.CLASS_NAME+"类,请实例Lcp."+this.CLASS_NAME+".getInstance()开始");
             }
             if (this._dispatcher == null) {
                 this._dispatcher = new egret.EventDispatcher();
                 this.isInit = true;
             }
         }
-        var d = __define,c=LListener,p=c.prototype;
         LListener.getInstance = function () {
             if (this._instance == null)
                 this._instance = new LListener();
             return this._instance;
         };
-        p.addEventListener = function (type, listener, thisObject, useCapture, priority) {
+        LListener.prototype.addEventListener = function (type, listener, thisObject, useCapture, priority) {
             if (useCapture === void 0) { useCapture = false; }
             if (priority === void 0) { priority = 0; }
             this._dispatcher.addEventListener(type, listener, thisObject, useCapture, priority);
         };
-        p.removeEventListener = function (type, listener, thisObject, useCapture) {
+        LListener.prototype.removeEventListener = function (type, listener, thisObject, useCapture) {
             if (useCapture === void 0) { useCapture = false; }
             this._dispatcher.removeEventListener(type, listener, thisObject, useCapture);
         };
-        p.hasEventListener = function (type) {
+        LListener.prototype.hasEventListener = function (type) {
             return this._dispatcher.hasEventListener(type);
         };
-        p.willTrigger = function (type) {
+        LListener.prototype.willTrigger = function (type) {
             return this._dispatcher.willTrigger(type);
         };
-        p.dispatchEvent = function (event) {
+        LListener.prototype.dispatchEvent = function (event) {
             return this._dispatcher.dispatchEvent(event);
         };
-        p.toString = function () {
+        LListener.prototype.toString = function () {
             return this._dispatcher.toString();
         };
         return LListener;
     }());
     lcp.LListener = LListener;
-    egret.registerClass(LListener,'lcp.LListener');
+    __reflect(LListener.prototype, "lcp.LListener");
 })(lcp || (lcp = {}));
 //# sourceMappingURL=LListener.js.map

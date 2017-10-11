@@ -5,6 +5,19 @@
   * All Rights Reserved.
   * 可以有图片，文字，动画
   */
+var __reflect = (this && this.__reflect) || function (p, c, t) {
+    p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
+};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var ETabBar = (function (_super) {
     __extends(ETabBar, _super);
     /**
@@ -22,25 +35,25 @@ var ETabBar = (function (_super) {
         if (fontSize === void 0) { fontSize = 30; }
         if (cartoonType === void 0) { cartoonType = 1; }
         if (assetsName === void 0) { assetsName = "assets"; }
-        _super.call(this);
+        var _this = _super.call(this) || this;
         // private textField:egret.TextField;
-        this.assets = RES.getRes("assets"); //名称不一样的话需要修改
-        this.btnArr = [];
-        this.descStrArr = [];
-        this.isPlayCartoon = false;
-        this.cartoonType = 1;
-        this.isSelectIndex = 0;
-        this.imgNormalName = "";
-        this.imgSelectName = "";
-        this.param = { context: null, data: null }; //回调参数
-        this.param.context = context;
-        this.imgNormalName = imgNormalName;
-        this.imgSelectName = imgSelectName;
-        this.descStrArr = descStrArr;
-        this.init(context, backFun, descStrArr, fontSize, cartoonType, assetsName);
+        _this.assets = RES.getRes("assets"); //名称不一样的话需要修改
+        _this.btnArr = [];
+        _this.descStrArr = [];
+        _this.isPlayCartoon = false;
+        _this.cartoonType = 1;
+        _this.isSelectIndex = 0;
+        _this.imgNormalName = "";
+        _this.imgSelectName = "";
+        _this.param = { context: null, data: null }; //回调参数
+        _this.param.context = context;
+        _this.imgNormalName = imgNormalName;
+        _this.imgSelectName = imgSelectName;
+        _this.descStrArr = descStrArr;
+        _this.init(context, backFun, descStrArr, fontSize, cartoonType, assetsName);
+        return _this;
     }
-    var d = __define,c=ETabBar,p=c.prototype;
-    p.init = function (context, backFun, descStrArr, fontSize, cartoonType, assetsName) {
+    ETabBar.prototype.init = function (context, backFun, descStrArr, fontSize, cartoonType, assetsName) {
         if (backFun === void 0) { backFun = null; }
         if (descStrArr === void 0) { descStrArr = []; }
         if (fontSize === void 0) { fontSize = 30; }
@@ -63,18 +76,18 @@ var ETabBar = (function (_super) {
             }
         }
     };
-    p.onSelectBack = function (data) {
+    ETabBar.prototype.onSelectBack = function (data) {
         this.retset();
         this.param.data = data;
         this.setSelectedIndex(data);
         this.backFun.apply(this.param.context, [this.param.data]);
     };
     //获得选中的index
-    p.getSelectedIndex = function () {
+    ETabBar.prototype.getSelectedIndex = function () {
         return this.isSelectIndex;
     };
     //设置选中的index
-    p.setSelectedIndex = function (index) {
+    ETabBar.prototype.setSelectedIndex = function (index) {
         if (index === void 0) { index = 0; }
         this.retset();
         this.btnArr[index].setSelected(true);
@@ -82,14 +95,14 @@ var ETabBar = (function (_super) {
         this.btnArr[index].setEnable(false);
     };
     //设置绑定数据
-    p.setBindData = function (data) {
+    ETabBar.prototype.setBindData = function (data) {
         this.param.data = data;
     };
     //获取绑定数据
-    p.getBindData = function () {
+    ETabBar.prototype.getBindData = function () {
         return this.param.data;
     };
-    p.retset = function () {
+    ETabBar.prototype.retset = function () {
         for (var i = 0; i < this.descStrArr.length; i++) {
             var btn = this.btnArr[i];
             btn.setSelected(false);
@@ -98,5 +111,5 @@ var ETabBar = (function (_super) {
     };
     return ETabBar;
 }(egret.DisplayObjectContainer));
-egret.registerClass(ETabBar,'ETabBar');
+__reflect(ETabBar.prototype, "ETabBar");
 //# sourceMappingURL=ETabBar.js.map

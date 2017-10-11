@@ -1,3 +1,16 @@
+var __reflect = (this && this.__reflect) || function (p, c, t) {
+    p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
+};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 /**
   * 警告提示类
   * by dily
@@ -21,20 +34,20 @@ var AlertPanel = (function (_super) {
         if (cancelFun === void 0) { cancelFun = null; }
         if (acceptFun === void 0) { acceptFun = null; }
         if (type === void 0) { type = 1; }
-        _super.call(this);
-        this.titleStr = "";
-        this.descStr = "";
-        this.type = 1;
-        this.titleStr = titleStr;
-        this.descStr = descStr;
-        this.cancelFun = cancelFun;
-        this.acceptFun = acceptFun;
-        this.type = type;
-        this.initUI();
+        var _this = _super.call(this) || this;
+        _this.titleStr = "";
+        _this.descStr = "";
+        _this.type = 1;
+        _this.titleStr = titleStr;
+        _this.descStr = descStr;
+        _this.cancelFun = cancelFun;
+        _this.acceptFun = acceptFun;
+        _this.type = type;
+        _this.initUI();
+        return _this;
     }
-    var d = __define,c=AlertPanel,p=c.prototype;
     // 初始化面板
-    p.initUI = function () {
+    AlertPanel.prototype.initUI = function () {
         this.bg = new egret.Bitmap();
         this.bg.texture = this.assets.getTexture("alertBg");
         this.addChild(this.bg);
@@ -89,13 +102,13 @@ var AlertPanel = (function (_super) {
             this.acceptBtn.y = this.bg.height - this.acceptBtn.height / 2 - 10;
         }
     };
-    p.getWidth = function () {
+    AlertPanel.prototype.getWidth = function () {
         return this.bg.width;
     };
-    p.getHeight = function () {
+    AlertPanel.prototype.getHeight = function () {
         return this.bg.height;
     };
     return AlertPanel;
 }(BasePanel));
-egret.registerClass(AlertPanel,'AlertPanel');
+__reflect(AlertPanel.prototype, "AlertPanel");
 //# sourceMappingURL=AlertPanel.js.map

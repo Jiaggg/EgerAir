@@ -5,20 +5,32 @@
   * All Rights Reserved.
   * 使用方法：this.textTF.setText("haa<font size='60' color='0x2bff00' i='true' b='false'>aaaa</font>aaaaaa<i>aaaa</i>aaaaaaaa");
   */
+var __reflect = (this && this.__reflect) || function (p, c, t) {
+    p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
+};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var ETextField = (function (_super) {
     __extends(ETextField, _super);
     function ETextField() {
-        _super.call(this);
+        return _super.call(this) || this;
     }
-    var d = __define,c=ETextField,p=c.prototype;
     //demo
     //"haa<font size='60' color='0x2bff00' i='true' b='false'>aaaa</font>aaaaaa<i>aaaa</i>aaaaaaaa"
-    p.setText = function (str) {
+    ETextField.prototype.setText = function (str) {
         if (str === void 0) { str = ""; }
         var styleParser = new egret.HtmlTextParser();
         this.textFlow = styleParser.parser(str);
     };
     return ETextField;
 }(egret.TextField));
-egret.registerClass(ETextField,'ETextField');
+__reflect(ETextField.prototype, "ETextField");
 //# sourceMappingURL=ETextField.js.map

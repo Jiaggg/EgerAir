@@ -1,3 +1,16 @@
+var __reflect = (this && this.__reflect) || function (p, c, t) {
+    p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
+};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 /**
   * 加载类
   * by dily
@@ -8,15 +21,15 @@
 var LoadingPanel = (function (_super) {
     __extends(LoadingPanel, _super);
     function LoadingPanel() {
-        _super.call(this);
-        this.bg = new egret.Sprite();
-        this.w = 0;
-        this.h = 0;
-        this.mySheet = RES.getRes("load");
-        this.createView();
+        var _this = _super.call(this) || this;
+        _this.bg = new egret.Sprite();
+        _this.w = 0;
+        _this.h = 0;
+        _this.mySheet = RES.getRes("load");
+        _this.createView();
+        return _this;
     }
-    var d = __define,c=LoadingPanel,p=c.prototype;
-    p.createView = function () {
+    LoadingPanel.prototype.createView = function () {
         this.w = egret.MainContext.instance.stage.stageWidth;
         this.h = egret.MainContext.instance.stage.stageHeight;
         this.bg.graphics.beginFill(0x313131, 1);
@@ -53,12 +66,12 @@ var LoadingPanel = (function (_super) {
         this.textField.textAlign = "center";
         this.textField.text = "0%";
     };
-    p.setProgress = function (current, total) {
+    LoadingPanel.prototype.setProgress = function (current, total) {
         var rate = Math.round((current / total) * 100);
         this.textField.text = rate + "%";
         this.pgBar.width = 282 * (current / total);
     };
     return LoadingPanel;
 }(egret.Sprite));
-egret.registerClass(LoadingPanel,'LoadingPanel');
+__reflect(LoadingPanel.prototype, "LoadingPanel");
 //# sourceMappingURL=LoadingPanel.js.map

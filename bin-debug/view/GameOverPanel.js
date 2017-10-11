@@ -1,11 +1,23 @@
+var __reflect = (this && this.__reflect) || function (p, c, t) {
+    p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
+};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var GameOverPanel = (function (_super) {
     __extends(GameOverPanel, _super);
     function GameOverPanel() {
-        _super.call(this);
+        return _super.call(this) || this;
     }
-    var d = __define,c=GameOverPanel,p=c.prototype;
     // 初始化面板
-    p.initPanel = function () {
+    GameOverPanel.prototype.initPanel = function () {
         this.bg = new egret.Bitmap();
         this.bg.texture = this.assets.getTexture("bg");
         this.addChild(this.bg);
@@ -75,36 +87,36 @@ var GameOverPanel = (function (_super) {
         this.setBtn.visible = false;
         this.initEffect();
     };
-    p.alert1 = function () {
+    GameOverPanel.prototype.alert1 = function () {
         Global.confirm("提示", "我是一个confirm栗子，哈哈", null, null, 1);
     };
-    p.alert2 = function () {
+    GameOverPanel.prototype.alert2 = function () {
         Global.confirm("提示", "我是一个confirm栗子，哈哈", null, null, 2);
     };
-    p.alert3 = function () {
+    GameOverPanel.prototype.alert3 = function () {
         Global.confirm("提示", "我是一个confirm栗子，哈哈", null, null, 3);
     };
-    p.alert4 = function () {
+    GameOverPanel.prototype.alert4 = function () {
         Global.confirm("提示", "我是一个confirm栗子，哈哈", null, null, 4);
     };
-    p.tipsEffect1 = function () {
+    GameOverPanel.prototype.tipsEffect1 = function () {
         EffectUtils.showTips("this.startBtn", 1);
         window["grayscale"](this.helpBtn);
         this.helpBtn;
     };
-    p.tipsEffect2 = function () {
+    GameOverPanel.prototype.tipsEffect2 = function () {
         EffectUtils.showTips("this.startBtn", 2);
     };
-    p.tipsEffect3 = function () {
+    GameOverPanel.prototype.tipsEffect3 = function () {
         EffectUtils.showTips("this.startBtn", 4);
     };
-    p.tipsEffect4 = function () {
+    GameOverPanel.prototype.tipsEffect4 = function () {
         EffectUtils.showTips("this.startBtn", 5);
         egret.setTimeout(function () {
             EffectUtils.shakeScreen(2);
         }, this, 500);
     };
-    p.initEffect = function () {
+    GameOverPanel.prototype.initEffect = function () {
         this.htmlTF.y = -350;
         this.startBtn.alpha = 0;
         this.helpBtn.y = this.h + 150;
@@ -132,11 +144,11 @@ var GameOverPanel = (function (_super) {
         this.setBtn.visible = true;
         egret.Tween.get(this.htmlTF).to({ y: 60 }, 600, egret.Ease.backOut).call(onComplete, this);
     };
-    p.onStartBtnTouchTap = function (e) {
+    GameOverPanel.prototype.onStartBtnTouchTap = function (e) {
         Global.dispatchEvent(MainNotify.closeGameOverPanelNotify, null, false);
         Global.dispatchEvent(MainNotify.openStartPanelNotify, null, false);
     };
     return GameOverPanel;
 }(BasePanel));
-egret.registerClass(GameOverPanel,'GameOverPanel');
+__reflect(GameOverPanel.prototype, "GameOverPanel");
 //# sourceMappingURL=GameOverPanel.js.map

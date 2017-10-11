@@ -1,3 +1,16 @@
+var __reflect = (this && this.__reflect) || function (p, c, t) {
+    p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
+};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 /**
  * Created by d8q8 on 2014/8/12.
  * @module Lcp
@@ -15,31 +28,33 @@ var lcp;
             if (obj === void 0) { obj = null; }
             if (bubbles === void 0) { bubbles = false; }
             if (cancelable === void 0) { cancelable = false; }
-            _super.call(this, type, bubbles, cancelable);
-            this.CLASS_NAME = "LEvent";
+            var _this = _super.call(this, type, bubbles, cancelable) || this;
+            _this.CLASS_NAME = "LEvent";
             if (obj) {
-                this._obj = obj;
+                _this._obj = obj;
             }
+            return _this;
         }
-        var d = __define,c=LEvent,p=c.prototype;
-        p.clone = function (obj) {
+        LEvent.prototype.clone = function (obj) {
             return new LEvent(this.type, obj ? obj : this._obj, this.bubbles, this.cancelable);
         };
-        p.toString = function () {
+        LEvent.prototype.toString = function () {
             console.log(this.CLASS_NAME, "type", "bubbles", "cancelable");
         };
-        d(p, "param"
+        Object.defineProperty(LEvent.prototype, "param", {
             /**
              * 传参获取
              * @returns {Object}
              */
-            ,function () {
+            get: function () {
                 return this._obj;
-            }
-        );
+            },
+            enumerable: true,
+            configurable: true
+        });
         return LEvent;
     }(egret.Event));
     lcp.LEvent = LEvent;
-    egret.registerClass(LEvent,'lcp.LEvent');
+    __reflect(LEvent.prototype, "lcp.LEvent");
 })(lcp || (lcp = {}));
 //# sourceMappingURL=LEvent.js.map

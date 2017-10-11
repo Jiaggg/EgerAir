@@ -1,3 +1,16 @@
+var __reflect = (this && this.__reflect) || function (p, c, t) {
+    p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
+};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 /**
   * 分享类
   * by dily
@@ -8,14 +21,14 @@
 var ShareIconPanel = (function (_super) {
     __extends(ShareIconPanel, _super);
     function ShareIconPanel() {
-        _super.call(this, "socialIcon");
-        this.bg = new egret.Sprite();
-        this.shareIconRender = new ShareIconRender();
-        this.initUI();
+        var _this = _super.call(this, "socialIcon") || this;
+        _this.bg = new egret.Sprite();
+        _this.shareIconRender = new ShareIconRender();
+        _this.initUI();
+        return _this;
     }
-    var d = __define,c=ShareIconPanel,p=c.prototype;
     // 初始化面板
-    p.initUI = function () {
+    ShareIconPanel.prototype.initUI = function () {
         this.bg.graphics.beginFill(0x000000, 0.5);
         this.bg.graphics.drawRect(0, 0, this.w, this.h);
         this.bg.graphics.endFill();
@@ -49,7 +62,7 @@ var ShareIconPanel = (function (_super) {
         this.arrowImg.alpha = 0;
         Global.addEventListener(MainNotify.updateShareNotify, this.onUpdateShare, this);
     };
-    p.onBgBtnTouchTap = function () {
+    ShareIconPanel.prototype.onBgBtnTouchTap = function () {
         var onComplete = function () {
             Global.dispatchEvent(MainNotify.closeShareNotify);
         };
@@ -58,7 +71,7 @@ var ShareIconPanel = (function (_super) {
         egret.Tween.get(this.bg).to({ alpha: 0 }, 150).call(onComplete, this);
         egret.Tween.get(this.shareIconRender).to({ y: this.h }, 300);
     };
-    p.onUpdateShare = function (e) {
+    ShareIconPanel.prototype.onUpdateShare = function (e) {
         var str = GameConfig.platformType();
         var btnName = e.param;
         switch (str) {
@@ -185,5 +198,5 @@ var ShareIconPanel = (function (_super) {
     };
     return ShareIconPanel;
 }(BasePanel));
-egret.registerClass(ShareIconPanel,'ShareIconPanel');
+__reflect(ShareIconPanel.prototype, "ShareIconPanel");
 //# sourceMappingURL=ShareIconPanel.js.map

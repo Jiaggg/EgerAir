@@ -1,3 +1,16 @@
+var __reflect = (this && this.__reflect) || function (p, c, t) {
+    p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
+};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 /**
  * Created by 有来有去 on 2014/11/5.
  */
@@ -9,19 +22,19 @@ var BitmapBlink = (function (_super) {
     */
     function BitmapBlink(target, time, isAuto) {
         if (isAuto === void 0) { isAuto = true; }
-        _super.call(this);
-        this._target = target;
-        this._time = time;
+        var _this = _super.call(this) || this;
+        _this._target = target;
+        _this._time = time;
         if (isAuto) {
-            this.start();
+            _this.start();
         }
+        return _this;
     }
-    var d = __define,c=BitmapBlink,p=c.prototype;
-    p.start = function () {
+    BitmapBlink.prototype.start = function () {
         this._currTime = egret.getTimer();
         this._target.addEventListener(egret.Event.ENTER_FRAME, this.runDown, this);
     };
-    p.runDown = function (e) {
+    BitmapBlink.prototype.runDown = function (e) {
         this._target.alpha -= 0.045;
         if (this.checkOver()) {
             return;
@@ -31,7 +44,7 @@ var BitmapBlink = (function (_super) {
             this._target.addEventListener(egret.Event.ENTER_FRAME, this.runUp, this);
         }
     };
-    p.runUp = function (e) {
+    BitmapBlink.prototype.runUp = function (e) {
         this._target.alpha += 0.045;
         if (this.checkOver()) {
             return;
@@ -41,7 +54,7 @@ var BitmapBlink = (function (_super) {
             this._target.addEventListener(egret.Event.ENTER_FRAME, this.runDown, this);
         }
     };
-    p.checkOver = function () {
+    BitmapBlink.prototype.checkOver = function () {
         var nowTime = egret.getTimer();
         if (nowTime - this._currTime >= this._time) {
             this.destroy();
@@ -49,7 +62,7 @@ var BitmapBlink = (function (_super) {
         }
         return false;
     };
-    p.destroy = function () {
+    BitmapBlink.prototype.destroy = function () {
         this._target.alpha = 1;
         this._target.removeEventListener(egret.Event.ENTER_FRAME, this.runDown, this);
         this._target.removeEventListener(egret.Event.ENTER_FRAME, this.runUp, this);
@@ -58,5 +71,5 @@ var BitmapBlink = (function (_super) {
     };
     return BitmapBlink;
 }(egret.EventDispatcher));
-egret.registerClass(BitmapBlink,'BitmapBlink');
+__reflect(BitmapBlink.prototype, "BitmapBlink");
 //# sourceMappingURL=BitmapBlink.js.map

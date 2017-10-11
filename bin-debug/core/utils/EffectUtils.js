@@ -144,6 +144,7 @@ var EffectUtils;
                 break;
             }
             default: {
+                // TODO: Implemente default case
             }
         }
     }

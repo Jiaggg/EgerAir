@@ -1,12 +1,24 @@
+var __reflect = (this && this.__reflect) || function (p, c, t) {
+    p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
+};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var StartPanel = (function (_super) {
     __extends(StartPanel, _super);
     function StartPanel() {
-        _super.call(this);
+        return _super.call(this) || this;
     }
-    var d = __define,c=StartPanel,p=c.prototype;
     // private inputTF:egret.TextField;
     // 初始化面板
-    p.initPanel = function () {
+    StartPanel.prototype.initPanel = function () {
         this.bg = new egret.Bitmap();
         this.bg.texture = this.assets.getTexture("bg");
         this.addChild(this.bg);
@@ -70,7 +82,7 @@ var StartPanel = (function (_super) {
         // }
         // Global.addEventListener("uzwan_login",socketFun,this)
     };
-    p.initEffect = function () {
+    StartPanel.prototype.initEffect = function () {
         this.logoImg.y = -350;
         this.startBtn.alpha = 0;
         this.helpBtn.y = this.h + 150;
@@ -92,25 +104,25 @@ var StartPanel = (function (_super) {
         this.setBtn.visible = true;
         egret.Tween.get(this.logoImg).to({ y: 60 + this.logoImg.height }, 600, egret.Ease.backOut).call(onComplete, this);
     };
-    p.onStartBtnTouchTap = function (e) {
+    StartPanel.prototype.onStartBtnTouchTap = function (e) {
         Global.dispatchEvent(MainNotify.openGamePanelNotify, null, false);
         Global.dispatchEvent(MainNotify.closeStartPanelNotify, null, false);
     };
-    p.onHelpTouchTap = function (e) {
+    StartPanel.prototype.onHelpTouchTap = function (e) {
         // EffectUtils.rotationEffect(this.helpBtn,1000);
     };
-    p.onShopTouchTap = function (e) {
+    StartPanel.prototype.onShopTouchTap = function (e) {
         // EffectUtils.removeRotationEffect(this.helpBtn);
         Global.share();
     };
-    p.onFbTouchTap = function (e) {
+    StartPanel.prototype.onFbTouchTap = function (e) {
         EffectUtils.shakeObj(this.fbBtn);
     };
     //如下代码是测试socket通讯的，需要的打开测试
-    p.onSetTouchTap = function (e) {
+    StartPanel.prototype.onSetTouchTap = function (e) {
         // SocketManager.sendMessage('{"cmd":"uzwan_login","gameId":"0","from":"guzwan","userId":"3565526"}')
     };
     return StartPanel;
 }(BasePanel));
-egret.registerClass(StartPanel,'StartPanel');
+__reflect(StartPanel.prototype, "StartPanel");
 //# sourceMappingURL=StartPanel.js.map

@@ -1,11 +1,23 @@
+var __reflect = (this && this.__reflect) || function (p, c, t) {
+    p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
+};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var GamePanel = (function (_super) {
     __extends(GamePanel, _super);
     function GamePanel() {
-        _super.call(this);
+        return _super.call(this) || this;
     }
-    var d = __define,c=GamePanel,p=c.prototype;
     // 初始化面板
-    p.initPanel = function () {
+    GamePanel.prototype.initPanel = function () {
         this.bg = new egret.Bitmap();
         this.bg.texture = this.assets.getTexture("bg");
         this.addChild(this.bg);
@@ -88,19 +100,19 @@ var GamePanel = (function (_super) {
         TipsManager.addTips(this.setBtn, "我是设置按钮哦！", 4);
         this.initEffect();
     };
-    p.alert1 = function () {
+    GamePanel.prototype.alert1 = function () {
         Global.alert("提示", "我是一个提示栗子，哈哈", null, 1);
     };
-    p.alert2 = function () {
+    GamePanel.prototype.alert2 = function () {
         Global.alert("提示", "我是一个提示栗子，哈哈", null, 2);
     };
-    p.alert3 = function () {
+    GamePanel.prototype.alert3 = function () {
         Global.alert("提示", "我是一个提示栗子，哈哈", null, 3);
     };
-    p.alert4 = function () {
+    GamePanel.prototype.alert4 = function () {
         Global.alert("提示", "我是一个提示栗子，哈哈", null, 4);
     };
-    p.initEffect = function () {
+    GamePanel.prototype.initEffect = function () {
         this.htmlTF.y = -350;
         this.startBtn.alpha = 0;
         this.helpBtn.y = this.h + 150;
@@ -128,11 +140,11 @@ var GamePanel = (function (_super) {
         this.setBtn.visible = true;
         egret.Tween.get(this.htmlTF).to({ y: 60 }, 600, egret.Ease.backOut).call(onComplete, this);
     };
-    p.onStartBtnTouchTap = function (e) {
+    GamePanel.prototype.onStartBtnTouchTap = function (e) {
         Global.dispatchEvent(MainNotify.openGameOverPanelNotify, null, false);
         Global.dispatchEvent(MainNotify.closeGamePanelNotify, null, false);
     };
     return GamePanel;
 }(BasePanel));
-egret.registerClass(GamePanel,'GamePanel');
+__reflect(GamePanel.prototype, "GamePanel");
 //# sourceMappingURL=GamePanel.js.map
